@@ -5,6 +5,7 @@ namespace App\Filament\Resources\Artists\Tables;
 use Filament\Tables\Table;
 use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
+use Filament\Support\Icons\Heroicon;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\RestoreBulkAction;
@@ -23,13 +24,15 @@ class ArtistsTable
                     ->searchable(),
                 TextColumn::make('email')
                     ->label('Email address')
+                    ->icon(Heroicon::Envelope)
+                    ->iconColor('primary')
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('contact')
                     ->searchable(),
                 ImageColumn::make('picture')      //image returns real image instead of URL
                     ->disk('public')
-                    ->square(),
+                    ->circular(),
                 TextColumn::make('created_at')
                     ->dateTime()                        //formats timestamp
                     ->sortable()                        //allows sorting by this column

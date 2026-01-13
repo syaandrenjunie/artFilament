@@ -19,10 +19,19 @@ class CategoriesTable
         return $table
             ->columns([
                 TextColumn::make('name')
-                    ->searchable(),
+                    ->searchable()
+                    ->color('primary'),
                 TextColumn::make('description')
                     ->label('Description')
                     ->searchable(),
+            ])
+            ->pushColumns([
+                TextColumn::make('created_at')
+                    ->label('Created')
+                    ->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('updated_at')
+                    ->label('Updated')
+                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 TrashedFilter::make(),
