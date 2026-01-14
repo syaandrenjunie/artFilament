@@ -34,7 +34,7 @@ class CategoryResource extends Resource
     }
     //form definition
 
-    public static function infoli(Schema $schema): Schema
+    public static function infolist(Schema $schema): Schema
     {
         return CategoryInfolist::configure($schema);
     }
