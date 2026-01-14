@@ -2,9 +2,10 @@
 
 namespace App\Filament\Resources\Artists\Schemas;
 
-use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\Textarea;
 use Filament\Schemas\Schema;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\FileUpload;
 
 class ArtistForm
 {
@@ -21,7 +22,7 @@ class ArtistForm
                     ->email()
                     ->required(),
                 TextInput::make('contact'),
-                TextInput::make('picture'),
+                FileUpload::make('picture'),
             ]);
     }
 }
