@@ -8,6 +8,7 @@ use Filament\Actions\EditAction;
 use Filament\Actions\ForceDeleteBulkAction;
 use Filament\Actions\RestoreBulkAction;
 use Filament\Actions\ViewAction;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Tables\Table;
@@ -21,14 +22,16 @@ class ArtworksTable
                 TextColumn::make('title')
                     ->searchable(),
                 TextColumn::make('price')
+                    ->money('MYR')
                     ->searchable(),
-                TextColumn::make('picture')
-                    ->searchable(),
-                TextColumn::make('artist_id')
-                    ->numeric()
+                ImageColumn::make('picture')
+                    ->disk('public')
+                    ->square(),
+                TextColumn::make('artist.name')
+                    ->searchable()
                     ->sortable(),
-                TextColumn::make('category_id')
-                    ->numeric()
+                TextColumn::make('category.name')
+                    ->searchable()
                     ->sortable(),
                 TextColumn::make('created_at')
                     ->dateTime()

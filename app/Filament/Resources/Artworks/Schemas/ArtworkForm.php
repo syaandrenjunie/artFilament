@@ -2,8 +2,11 @@
 
 namespace App\Filament\Resources\Artworks\Schemas;
 
-use Filament\Forms\Components\TextInput;
 use Filament\Schemas\Schema;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\FileUpload;
 
 class ArtworkForm
 {
@@ -14,14 +17,29 @@ class ArtworkForm
                 TextInput::make('title')
                     ->required(),
                 TextInput::make('price')
+                    ->prefix('MYR ')
                     ->required(),
-                TextInput::make('picture'),
-                TextInput::make('artist_id')
-                    ->required()
-                    ->numeric(),
-                TextInput::make('category_id')
-                    ->required()
-                    ->numeric(),
+                 Select::make('artist_id')
+                    ->relationship('artist', 'name')
+                    ->createOptionForm([
+                        TextInput::make('name')->required(),
+                        TextInput::make('email')->email()->required(),
+                    ])
+                    ->required(),
+                // Select::make('artist_id')
+                //     ->label('Artist')
+                //     ->relationship('artist', 'name')
+                //     ->searchable()
+                //     ->preload()
+                //     ->required(),
+                Select::make('category_id')
+                    ->label('Category')
+                    ->relationship('category', 'name')
+                    ->searchable()
+                    ->preload()
+                    ->required(),
+                FileUpload::make('picture'),
+
             ]);
     }
 }
