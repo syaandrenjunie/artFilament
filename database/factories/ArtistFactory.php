@@ -17,7 +17,7 @@ class ArtistFactory extends Factory
      */
     public function definition(): array
     {
-         $faker = \Faker\Factory::create();
+        $faker = \Faker\Factory::create();
         $faker->addProvider(new \Smknstd\FakerPicsumImages\FakerPicsumImagesProvider($faker));
         
         $name = fake()->name();

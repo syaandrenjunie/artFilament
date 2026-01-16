@@ -14,6 +14,7 @@ class ViewArtist extends ViewRecord
     {
         return [
             EditAction::make(),
+            
         ];
     }
 }
