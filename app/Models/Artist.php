@@ -15,4 +15,9 @@ class Artist extends Model
     protected $table = 'artists';
 
     protected $fillable = [ 'name', 'bio', 'email', 'contact', 'picture'];
+
+    public function artworks()
+    {
+        return $this->hasMany(Artwork::class, 'artist_id');
+    }
 }
