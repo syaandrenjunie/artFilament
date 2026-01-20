@@ -2,21 +2,22 @@
 
 namespace App\Filament\Resources\Categories;
 
-use App\Filament\Resources\Categories\Pages\CreateCategory;
-use App\Filament\Resources\Categories\Pages\EditCategory;
-use App\Filament\Resources\Categories\Pages\ListCategories;
-use App\Filament\Resources\Categories\Pages\ViewCategory;
-use App\Filament\Resources\Categories\Schemas\CategoryForm;
-use App\Filament\Resources\Categories\Schemas\CategoryInfolist;
-use App\Filament\Resources\Categories\Tables\CategoriesTable;
-use App\Models\Category;
 use BackedEnum;
-use Filament\Resources\Resource;
-use Filament\Schemas\Schema;
-use Filament\Support\Icons\Heroicon;
+use App\Models\Category;
 use Filament\Tables\Table;
+use Filament\Schemas\Schema;
+use Filament\Resources\Resource;
+use Filament\Support\Icons\Heroicon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Resources\Categories\Pages\EditCategory;
+use App\Filament\Resources\Categories\Pages\ViewCategory;
+use App\Filament\Resources\Categories\Pages\CreateCategory;
+use App\Filament\Resources\Categories\Pages\ListCategories;
+use App\Filament\Resources\Categories\Schemas\CategoryForm;
+use App\Filament\Resources\Categories\Tables\CategoriesTable;
+use App\Filament\Resources\Categories\Schemas\CategoryInfolist;
+use App\Filament\Resources\Categories\RelationManagers\ArtworksRelationManager;
 
 class CategoryResource extends Resource
 {
@@ -49,7 +50,7 @@ class CategoryResource extends Resource
     public static function getRelations(): array    //relationships
     {
         return [
-            //
+            ArtworksRelationManager::class,
         ];
     }
 
