@@ -2,21 +2,22 @@
 
 namespace App\Filament\Resources\Artists;
 
-use App\Filament\Resources\Artists\Pages\CreateArtist;
-use App\Filament\Resources\Artists\Pages\EditArtist;
-use App\Filament\Resources\Artists\Pages\ListArtists;
-use App\Filament\Resources\Artists\Pages\ViewArtist;
-use App\Filament\Resources\Artists\Schemas\ArtistForm;
-use App\Filament\Resources\Artists\Schemas\ArtistInfolist;
-use App\Filament\Resources\Artists\Tables\ArtistsTable;
-use App\Models\Artist;
 use BackedEnum;
-use Filament\Resources\Resource;
-use Filament\Schemas\Schema;
-use Filament\Support\Icons\Heroicon;
+use App\Models\Artist;
 use Filament\Tables\Table;
+use Filament\Schemas\Schema;
+use Filament\Resources\Resource;
+use Filament\Support\Icons\Heroicon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Resources\Artists\Pages\EditArtist;
+use App\Filament\Resources\Artists\Pages\ViewArtist;
+use App\Filament\Resources\Artists\Pages\ListArtists;
+use App\Filament\Resources\Artists\Pages\CreateArtist;
+use App\Filament\Resources\Artists\Schemas\ArtistForm;
+use App\Filament\Resources\Artists\Tables\ArtistsTable;
+use App\Filament\Resources\Artists\Schemas\ArtistInfolist;
+use App\Filament\Resources\Artists\RelationManagers\ArtworksRelationManager;
 
 class ArtistResource extends Resource
 {
@@ -44,7 +45,8 @@ class ArtistResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            ArtworksRelationManager::class,
+
         ];
     }
 
