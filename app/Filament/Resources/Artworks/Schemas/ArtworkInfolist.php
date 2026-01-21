@@ -4,6 +4,8 @@ namespace App\Filament\Resources\Artworks\Schemas;
 
 use App\Models\Artwork;
 use Filament\Schemas\Schema;
+use Filament\Support\Enums\TextSize;
+use Filament\Schemas\Components\Section;
 use Filament\Schemas\Components\Fieldset;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Infolists\Components\ImageEntry;
@@ -14,47 +16,37 @@ class ArtworkInfolist
     {
         return $schema
             ->components([
-
-            ImageEntry::make('picture')
-                            ->square()
-                            ->size(200)
-                            ->placeholder('-'),
-
-                Fieldset::make('Basic Info')
-                    ->columns([
-                        'default' => 2,
-                        'md' => 2,
-                        'xl' => 2,
-                    ])
+                Section::make()
+                    ->aside()
                     ->schema([
-                        TextEntry::make('title'),
+                        ImageEntry::make('picture')
+                            ->disk('public')
+                            ->square()
+                            ->size(260)
+                            ->placeholder('No image'),
+                    ]),
+
+                Section::make('Artwork Details')
+                    ->schema([
+                        TextEntry::make('title')
+                            ->size(TextSize::Large)
+                            ->weight('bold'),
+
                         TextEntry::make('price')
                             ->money('MYR'),
 
                         TextEntry::make('artist.name')
                             ->label('Artist'),
+
                         TextEntry::make('category.name')
                             ->label('Category'),
-                        
 
-                    ]),
-
-                Fieldset::make('Media & Timestamps')
-                    ->columns(2)
-                    ->schema([
                         TextEntry::make('created_at')
-                            ->dateTime()
-                            ->placeholder('-'),
+                            ->dateTime(),
+
                         TextEntry::make('updated_at')
-                            ->dateTime()
-                            ->placeholder('-'),
-                        TextEntry::make('deleted_at')
-                            ->dateTime()
-                            ->visible(fn(Artwork $record): bool => $record->trashed()),
+                            ->dateTime(),
                     ]),
-
-
-
             ]);
     }
 }

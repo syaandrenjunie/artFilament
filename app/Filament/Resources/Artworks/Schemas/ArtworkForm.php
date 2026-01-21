@@ -19,19 +19,13 @@ class ArtworkForm
                 TextInput::make('price')
                     ->prefix('MYR ')
                     ->required(),
-                 Select::make('artist_id')
-                    ->relationship('artist', 'name')
+                Select::make('artist_id')
+                    ->relationship('artist', 'name')    //fetch existing artist
                     ->createOptionForm([
                         TextInput::make('name')->required(),
                         TextInput::make('email')->email()->required(),
                     ])
                     ->required(),
-                // Select::make('artist_id')
-                //     ->label('Artist')
-                //     ->relationship('artist', 'name')
-                //     ->searchable()
-                //     ->preload()
-                //     ->required(),
                 Select::make('category_id')
                     ->label('Category')
                     ->relationship('category', 'name')
