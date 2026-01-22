@@ -125,8 +125,16 @@ class ArtworksRelationManager extends RelationManager
             ->filters([
                 TrashedFilter::make(),
             ])
+            ->emptyStateHeading('No Artworks Found')
+            ->emptyStateDescription('Create artworks to display them here.')    
+            ->emptyStateActions([
+                CreateAction::make()
+                    ->icon('heroicon-o-plus')
+                    ->label('Create Artwork'),
+            ])
             ->headerActions([
-                CreateAction::make(),
+                CreateAction::make()
+                    ->visible(fn (Table $table) => $table->getRecords()->isNotEmpty()),
                 // AssociateAction::make(),    when have relationship
             ])
             ->recordActions([
