@@ -31,7 +31,7 @@ class ArtistsTable
                 TextColumn::make('contact')
                     ->searchable(),
                 ImageColumn::make('picture')      //image returns real image instead of URL
-                    ->disk('public')
+                    ->disk('local')
                     ->circular(),
                 TextColumn::make('created_at')
                     ->dateTime()                        //formats timestamp

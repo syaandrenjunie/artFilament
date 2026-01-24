@@ -35,7 +35,7 @@ class ArtistInfolist
                 Fieldset::make('Media & Timestamps')
                     ->columns(3)
                     ->schema([
-                        ImageEntry::make('picture')->placeholder('-'),
+                        ImageEntry::make('picture')->placeholder('-')->disk('local'),
                         TextEntry::make('created_at')->dateTime()->placeholder('-'),
                         TextEntry::make('updated_at')->dateTime()->placeholder('-'),
                         TextEntry::make('deleted_at')

@@ -22,7 +22,10 @@ class ArtistForm
                     ->email()
                     ->required(),
                 TextInput::make('contact'),
-                FileUpload::make('picture'),
+                FileUpload::make('picture')
+                    ->image()
+                    ->disk('local')
+                    ->directory('uploads/artists'),
             ]);
     }
 }
