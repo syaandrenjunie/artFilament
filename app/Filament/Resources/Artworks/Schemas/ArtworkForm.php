@@ -19,21 +19,23 @@ class ArtworkForm
                 TextInput::make('price')
                     ->prefix('MYR ')
                     ->required(),
-                Select::make('artist.name')
+                Select::make('artist_id')
                     ->relationship('artist', 'name')    //fetch existing artist
                     ->createOptionForm([
                         TextInput::make('name')->required(),
                         TextInput::make('email')->email()->required(),
                     ])
                     ->required(),
-                Select::make('category.name')
+                Select::make('category_id')
                     ->label('Category')
                     ->relationship('category', 'name')
                     ->searchable()
                     ->preload()
                     ->required(),
-                FileUpload::make('picture'),
-
+                FileUpload::make('picture')
+                    ->image()
+                    ->disk('local')
+                    ->directory('artworks'),
             ]);
     }
 }

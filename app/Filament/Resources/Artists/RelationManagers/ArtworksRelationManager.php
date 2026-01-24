@@ -39,17 +39,22 @@ class ArtworksRelationManager extends RelationManager
             ->components([
                 FileUpload::make('picture')
                     ->image()
-                    ->disk('public'),
+                    ->disk('public')
+                    ->helperText('Recommended size: square image, max 3MB.')
+                    ->imagePreviewHeight('250'),
                 TextInput::make('title')
                     ->required(),
                 TextInput::make('price')
                     ->numeric()
                     ->prefix('MYR ')
                     ->minValue(0)
+                    ->helperText('Enter the price in Malaysian Ringgit')
                     ->required(),
                 Select::make('category_id')
                     ->relationship('category', 'name')
-                    ->required(),
+                    ->preload()
+                    ->required()
+                    ->helperText('Every artwork must belong to a category'),
 
             ]);
     }
@@ -62,7 +67,7 @@ class ArtworksRelationManager extends RelationManager
                     ->aside()
                     ->schema([
                         ImageEntry::make('picture')
-                            ->disk('public')
+                            ->disk('local')
                             ->square()
                             ->size(260)
                             ->placeholder('No image'),
@@ -105,7 +110,7 @@ class ArtworksRelationManager extends RelationManager
                     ->searchable(),
                 ImageColumn::make('picture')
                     ->square()
-                    ->disk('public'),
+                    ->disk('local'),
                 TextColumn::make('category.name')
                     ->searchable()
                     ->sortable(),

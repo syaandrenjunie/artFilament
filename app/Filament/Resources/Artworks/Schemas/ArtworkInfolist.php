@@ -20,7 +20,7 @@ class ArtworkInfolist
                     ->aside()
                     ->schema([
                         ImageEntry::make('picture')
-                            ->disk('public')
+                            ->disk('local')
                             ->square()
                             ->size(260)
                             ->placeholder('No image'),

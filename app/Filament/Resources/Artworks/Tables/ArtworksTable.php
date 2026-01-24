@@ -25,7 +25,7 @@ class ArtworksTable
                     ->money('MYR')
                     ->searchable(),
                 ImageColumn::make('picture')
-                    ->disk('public')
+                    ->disk('local')
                     ->square(),
                 TextColumn::make('artist.name')
                     ->searchable()
