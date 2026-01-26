@@ -21,4 +21,6 @@ class Customer extends Model implements HasMedia
         'email',
         'contact',
     ];
+
+    
 }
