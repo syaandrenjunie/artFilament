@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Artworks\Schemas;
 
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Schemas\Schema;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
@@ -32,10 +33,10 @@ class ArtworkForm
                     ->searchable()
                     ->preload()
                     ->required(),
-                FileUpload::make('picture')
+                SpatieMediaLibraryFileUpload::make('picture')
                     ->image()
-                    ->disk('local')
-                    ->directory('artworks'),
+                    ->collection('art_picture')
+                    ->nullable(),
             ]);
     }
 }

@@ -9,6 +9,8 @@ use Filament\Schemas\Components\Section;
 use Filament\Schemas\Components\Fieldset;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Infolists\Components\ImageEntry;
+use Filament\Infolists\Components\SpatieMediaLibraryImageEntry;
+
 
 class ArtworkInfolist
 {
@@ -19,8 +21,8 @@ class ArtworkInfolist
                 Section::make()
                     ->aside()
                     ->schema([
-                        ImageEntry::make('picture')
-                            ->disk('local')
+                        SpatieMediaLibraryImageEntry::make('picture')
+                            ->collection('art_picture')
                             ->square()
                             ->size(260)
                             ->placeholder('No image'),

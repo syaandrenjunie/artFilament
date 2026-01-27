@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Artworks\Tables;
 
+use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
@@ -24,8 +25,8 @@ class ArtworksTable
                 TextColumn::make('price')
                     ->money('MYR')
                     ->searchable(),
-                ImageColumn::make('picture')
-                    ->disk('local')
+                SpatieMediaLibraryImageColumn::make('picture')
+                    ->collection('art_picture')
                     ->square(),
                 TextColumn::make('artist.name')
                     ->searchable()
