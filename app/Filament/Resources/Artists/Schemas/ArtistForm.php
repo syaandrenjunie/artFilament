@@ -6,6 +6,8 @@ use Filament\Schemas\Schema;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
+
 
 class ArtistForm
 {
@@ -22,10 +24,9 @@ class ArtistForm
                     ->email()
                     ->required(),
                 TextInput::make('contact'),
-                FileUpload::make('picture')
+                SpatieMediaLibraryFileUpload::make('profile_picture')
                     ->image()
-                    ->disk('local')
-                    ->directory('uploads/artists'),
+                    ->collection('profile_picture'),
             ]);
     }
 }

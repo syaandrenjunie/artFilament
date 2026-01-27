@@ -7,6 +7,8 @@ use Filament\Schemas\Schema;
 use Filament\Schemas\Components\Fieldset;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Infolists\Components\ImageEntry;
+use Filament\Infolists\Components\SpatieMediaLibraryImageEntry;
+
 
 class ArtistInfolist
 {
@@ -28,14 +30,14 @@ class ArtistInfolist
                 Fieldset::make('Contact Info')
                     ->columns(2)
                     ->schema([
-                        TextEntry::make('email')->label('Email address'),
+                        TextEntry::make('email')->label('Email address')->copyable()->copyMessage('Email address copied to clipboard!'),
                         TextEntry::make('contact')->placeholder('-'),
                     ]),
 
                 Fieldset::make('Media & Timestamps')
                     ->columns(3)
                     ->schema([
-                        ImageEntry::make('picture')->placeholder('-')->disk('local'),
+                        SpatieMediaLibraryImageEntry::make('profile_picture')->placeholder('-')->collection('profile_picture'),
                         TextEntry::make('created_at')->dateTime()->placeholder('-'),
                         TextEntry::make('updated_at')->dateTime()->placeholder('-'),
                         TextEntry::make('deleted_at')

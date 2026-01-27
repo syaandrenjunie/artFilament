@@ -13,6 +13,8 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Filters\TrashedFilter;
 use Filament\Actions\ForceDeleteBulkAction;
+use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
+
 
 class ArtistsTable
 {
@@ -30,8 +32,8 @@ class ArtistsTable
                     ->sortable(),
                 TextColumn::make('contact')
                     ->searchable(),
-                ImageColumn::make('picture')      //image returns real image instead of URL
-                    ->disk('local')
+                SpatieMediaLibraryImageColumn::make('profile_picture')      //image returns real image instead of URL
+                    ->collection('profile_picture')
                     ->circular(),
                 TextColumn::make('created_at')
                     ->dateTime()                        //formats timestamp
