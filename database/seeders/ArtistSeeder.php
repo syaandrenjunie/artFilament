@@ -13,6 +13,13 @@ class ArtistSeeder extends Seeder
      */
     public function run(): void
     {
-        Artist::factory()->count(20)->create();
+        Artist::factory()
+            ->count(10)
+            ->create()
+            ->each(function ($artist) {
+                $artist
+                    ->addMediaFromUrl('https://picsum.photos/300/300')
+                    ->toMediaCollection('profile_picture', 'local');
+            });
     }
 }

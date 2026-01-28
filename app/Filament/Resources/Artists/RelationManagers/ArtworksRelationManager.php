@@ -28,6 +28,13 @@ use Filament\Infolists\Components\TextEntry;
 use Filament\Infolists\Components\ImageEntry;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Resources\RelationManagers\RelationManager;
+use Filament\Infolists\Components\SpatieMediaLibraryImageEntry;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
+use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
+
+
+
+
 
 class ArtworksRelationManager extends RelationManager
 {
@@ -37,11 +44,12 @@ class ArtworksRelationManager extends RelationManager
     {
         return $schema
             ->components([
-                FileUpload::make('picture')
+                SpatieMediaLibraryFileUpload::make('picture')
                     ->image()
-                    ->disk('public')
+                    ->collection('art_picture')
                     ->helperText('Recommended size: square image, max 3MB.')
-                    ->imagePreviewHeight('250'),
+                    ->imagePreviewHeight('250')
+                    ->nullable(),
                 TextInput::make('title')
                     ->required(),
                 TextInput::make('price')
@@ -66,8 +74,8 @@ class ArtworksRelationManager extends RelationManager
                 Section::make()
                     ->aside()
                     ->schema([
-                        ImageEntry::make('picture')
-                            ->disk('local')
+                        SpatieMediaLibraryImageEntry::make('picture')
+                            ->collection('art_picture')
                             ->square()
                             ->size(260)
                             ->placeholder('No image'),
@@ -108,9 +116,9 @@ class ArtworksRelationManager extends RelationManager
                 TextColumn::make('price')
                     ->money('MYR')
                     ->searchable(),
-                ImageColumn::make('picture')
-                    ->square()
-                    ->disk('local'),
+                SpatieMediaLibraryImageColumn::make('picture')
+                    ->collection('art_picture')
+                    ->square(),
                 TextColumn::make('category.name')
                     ->searchable()
                     ->sortable(),

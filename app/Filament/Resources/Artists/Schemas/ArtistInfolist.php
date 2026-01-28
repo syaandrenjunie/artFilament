@@ -37,7 +37,7 @@ class ArtistInfolist
                 Fieldset::make('Media & Timestamps')
                     ->columns(3)
                     ->schema([
-                        SpatieMediaLibraryImageEntry::make('profile_picture')->placeholder('-')->collection('profile_picture'),
+                        SpatieMediaLibraryImageEntry::make('profile_picture')->placeholder('-')->collection('profile_picture')->square(),
                         TextEntry::make('created_at')->dateTime()->placeholder('-'),
                         TextEntry::make('updated_at')->dateTime()->placeholder('-'),
                         TextEntry::make('deleted_at')
