@@ -20,14 +20,14 @@ class ArtworksTable
     {
         return $table
             ->columns([
+                SpatieMediaLibraryImageColumn::make('picture')
+                    ->collection('art_picture')
+                    ->square(),
                 TextColumn::make('title')
                     ->searchable(),
                 TextColumn::make('price')
                     ->money('MYR')
                     ->searchable(),
-                SpatieMediaLibraryImageColumn::make('picture')
-                    ->collection('art_picture')
-                    ->square(),
                 TextColumn::make('artist.name')
                     ->searchable()
                     ->sortable(),

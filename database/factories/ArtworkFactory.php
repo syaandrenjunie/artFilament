@@ -26,7 +26,6 @@ class ArtworkFactory extends Factory
             'price' => fake()->randomFloat(2, 10, 500),
             'artist_id' => Artist::inRandomOrder()->first()->id ?? Artist::factory(),
             'category_id' => Category::inRandomOrder()->first()->id ?? Category::factory(),
-            'picture' => $faker->imageUrl(150, 150)
         ];
     }
 }
