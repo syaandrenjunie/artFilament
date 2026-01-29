@@ -13,7 +13,7 @@ class ArtworkPolicy
      */
     public function viewAny(User $user): bool
     {
-        return true;
+        return $user->hasAnyRole(['admin', 'artist']);
     }
 
     /**
@@ -21,7 +21,7 @@ class ArtworkPolicy
      */
     public function view(User $user, Artwork $artwork): bool
     {
-        return true;
+        return $user->hasAnyRole(['admin', 'artist']);
     }
 
     /**
@@ -29,7 +29,7 @@ class ArtworkPolicy
      */
     public function create(User $user): bool
     {
-        return $user->hasRole('admin');
+        return $user->hasAnyRole(['admin', 'artist']);
     }
 
     /**
@@ -37,7 +37,17 @@ class ArtworkPolicy
      */
     public function update(User $user, Artwork $artwork): bool
     {
-        return $user->hasRole('admin');
+        // Admin can update anything
+        if ($user->hasRole('admin')) {
+            return true;
+        }
+
+        // Artist can update only their own artwork
+        if ($user->hasRole('artist')) {
+            return $artwork->artist_id === $user->id;
+        }
+
+        return false;
     }
 
     /**
@@ -45,7 +55,8 @@ class ArtworkPolicy
      */
     public function delete(User $user, Artwork $artwork): bool
     {
-        return $user->hasRole('admin');
+        // Same rule as update
+        return $this->update($user, $artwork);
     }
 
     /**
