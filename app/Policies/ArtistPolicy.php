@@ -13,7 +13,7 @@ class ArtistPolicy
      */
     public function viewAny(User $user): bool
     {
-        return $user->hasRole('admin');
+        return true;
     }
 
     /**
@@ -21,7 +21,7 @@ class ArtistPolicy
      */
     public function view(User $user, Artist $artist): bool
     {
-        return $user->hasRole('admin');
+        return true;
     }
 
     /**
@@ -45,7 +45,7 @@ class ArtistPolicy
      */
     public function delete(User $user, Artist $artist): bool
     {
-        return false;
+        return $user->hasRole('admin'); 
     }
 
     /**
@@ -53,7 +53,7 @@ class ArtistPolicy
      */
     public function restore(User $user, Artist $artist): bool
     {
-        return false;
+        return $user->hasRole('admin'); 
     }
 
     /**
@@ -61,6 +61,6 @@ class ArtistPolicy
      */
     public function forceDelete(User $user, Artist $artist): bool
     {
-        return false;
+        return $user->hasRole('admin'); 
     }
 }
