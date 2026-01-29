@@ -12,21 +12,11 @@ class CategoryForm
     public static function configure(Schema $schema): Schema
     {
         return $schema
-            ->components([
-                Fieldset::make('Category Information')
-                    ->columns([
-                        'default' => 1,
-                        'md' => 2,
-                        'xl' => 3,
-                    ])
-                    ->schema([
-                        TextInput::make('name')
-                            ->required(),
+    ->components([
+        TextInput::make('name')->required(),
+        Textarea::make('description')->placeholder('Provide a brief description of the category.'),
+    ]);
 
-                        Textarea::make('description')
-                            ->columnSpanFull(),
-                    ]),
-            ]);
     }
 }
 

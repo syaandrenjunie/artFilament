@@ -44,7 +44,7 @@ class CategoriesTable
             ->toolbarActions([
                 BulkActionGroup::make([
                     DeleteBulkAction::make()
-                        ->visible(fn($livewire) => auth()->user()->hasRole('admin')), // only admin sees it
+                        ->visible(fn($livewire) => auth()->user()->hasRole('admin')), // only admin sees it.
                     ForceDeleteBulkAction::make()
                         ->visible(fn($livewire) => auth()->user()->hasRole('admin')),
                     RestoreBulkAction::make()
