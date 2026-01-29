@@ -56,9 +56,12 @@ class ArtworksTable
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
-                    DeleteBulkAction::make(),
-                    ForceDeleteBulkAction::make(),
-                    RestoreBulkAction::make(),
+                    DeleteBulkAction::make()
+                        ->visible(fn($livewire) => auth()->user()->hasRole('admin')), // only admin sees it
+                    ForceDeleteBulkAction::make()
+                        ->visible(fn($livewire) => auth()->user()->hasRole('admin')),
+                    RestoreBulkAction::make()
+                        ->visible(fn($livewire) => auth()->user()->hasRole('admin')),
                 ]),
             ]);
     }
