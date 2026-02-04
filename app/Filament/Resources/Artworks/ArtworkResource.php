@@ -22,7 +22,7 @@ class ArtworkResource extends Resource
 {
     protected static ?string $model = Artwork::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedPhoto;
 
     protected static ?string $recordTitleAttribute = 'title';
 
