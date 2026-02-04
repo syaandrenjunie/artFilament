@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Filament\Models\Contracts\HasAvatar;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -12,7 +13,7 @@ use Filament\Panel;
 
 
 
-class User extends Authenticatable implements FilamentUser
+class User extends Authenticatable implements FilamentUser, HasAvatar
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable, HasRoles;
@@ -26,6 +27,7 @@ class User extends Authenticatable implements FilamentUser
         'name',
         'email',
         'password',
+        'profile_picture',
     ];
 
     /**
@@ -53,15 +55,13 @@ class User extends Authenticatable implements FilamentUser
 
     public function canAccessPanel(Panel $panel): bool
     {
-        if ($panel->getId() === 'artist') {
-            return $this->hasAnyRole(['artist', 'admin']);
-        }
-
-        if ($panel->getId() === 'admin') {
-            return $this->hasRole('admin');
-        }
-
-        return false;
+        return true;
     }
+
+    public function getFilamentAvatarUrl(): ?string
+    {
+        return $this->profile_picture ? asset('storage/' . $this->profile_picture) : null;
+    }
+
 
 }
