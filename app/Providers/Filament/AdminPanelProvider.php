@@ -7,6 +7,7 @@ use Filament\PanelProvider;
 use Filament\Pages\Dashboard;
 use Filament\Support\Colors\Color;
 use Filament\Widgets\AccountWidget;
+use App\Filament\Widgets\TestWidget;
 use Filament\Auth\Pages\EditProfile;
 use Filament\Widgets\FilamentInfoWidget;
 use Filament\Http\Middleware\Authenticate;
@@ -38,10 +39,11 @@ class AdminPanelProvider extends PanelProvider
             ->pages([
                 Dashboard::class,
             ])
-            ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\Filament\Widgets')
+            ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\Filament\Widgets')    //automatically add exisitng widget at dboard
             ->widgets([
                 AccountWidget::class,
                 FilamentInfoWidget::class,
+                TestWidget::class,
             ])
             ->middleware([
                 EncryptCookies::class,
