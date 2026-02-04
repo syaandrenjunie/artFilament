@@ -23,7 +23,7 @@ class ArtistResource extends Resource
 {
     protected static ?string $model = Artist::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::PaintBrush;
 
     protected static ?string $recordTitleAttribute = 'name';
 
